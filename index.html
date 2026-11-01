@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Nom de la marque] – Cadeaux entreprise, maison, personnalisés et événements</title>
+<meta name="description" content="[Décrivez votre activité en une phrase : cadeaux d'entreprise, cadeaux pour la maison, cadeaux personnalisés et événements.]">
+<meta name="theme-color" content="#14213D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header id="top">
+  <div class="container bar">
+    <a class="logo" href="#top" aria-label="Accueil">logo</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span></button>
+    <nav id="menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="categorie.html?cat=entreprise">Cadeaux entreprise</a></li>
+        <li><a href="categorie.html?cat=maison">Cadeaux maison</a></li>
+        <li><a href="categorie.html?cat=personnalise">Cadeaux personnalisés</a></li>
+        <li><a href="categorie.html?cat=evenement">Événements</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">[Votre signature]</p>
+      <h1>[Votre accroche principale ici]</h1>
+      <p class="lead">[Une phrase qui explique ce que vous proposez et pour qui.]</p>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="#categories">Découvrir nos cadeaux</a>
+        <a class="btn btn-ghost" href="#contact">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container reveal">
+      <div class="about-box">
+        <div class="about-text">
+          <h2>[Titre de présentation]</h2>
+          <p>[Décrivez ici votre savoir-faire, votre démarche et ce qui rend vos cadeaux uniques. Quelques lignes suffisent.]</p>
+          <a class="btn btn-dark" href="#contact">Nous contacter</a>
+        </div>
+
+        <!--
+          VIDÉO : renseignez data-video avec le fichier (ex. "video.mp4")
+          ou un lien d'intégration (ex. "https://www.youtube.com/embed/ID_VIDEO").
+          Optionnel : data-poster="affiche.jpg" pour l'image de couverture.
+        -->
+        <div class="video" id="video" data-video="" data-poster="">
+          <button class="video-play" type="button" aria-label="Lire la vidéo">
+            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <circle cx="32" cy="32" r="30" stroke="#fff" stroke-width="3"/>
+              <path d="M26 20 L46 32 L26 44 Z" fill="#fff"/>
+            </svg>
+            <span>Voir la vidéo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories" id="categories">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>[Nos univers]</h2>
+        <p>[Une courte phrase pour guider le visiteur vers la bonne catégorie.]</p>
+      </div>
+      <div class="grid">
+        <a class="card reveal" id="entreprise" href="categorie.html?cat=entreprise">
+          <h3>Cadeaux entreprise <span class="arrow" aria-hidden="true">→</span></h3>
+          <div class="img" data-label="image 1"><img src="image1.jpg" alt="Cadeaux entreprise" loading="lazy" onerror="this.remove()"></div>
+        </a>
+        <a class="card reveal" id="maison" href="categorie.html?cat=maison">
+          <h3>Cadeaux maison <span class="arrow" aria-hidden="true">→</span></h3>
+          <div class="img" data-label="image 2"><img src="image2.jpg" alt="Cadeaux maison" loading="lazy" onerror="this.remove()"></div>
+        </a>
+        <a class="card reveal" id="personnalise" href="categorie.html?cat=personnalise">
+          <h3>Cadeaux personnalisés <span class="arrow" aria-hidden="true">→</span></h3>
+          <div class="img" data-label="image 3"><img src="image3.jpg" alt="Cadeaux personnalisés" loading="lazy" onerror="this.remove()"></div>
+        </a>
+        <a class="card reveal" id="evenement" href="categorie.html?cat=evenement">
+          <h3>Événements <span class="arrow" aria-hidden="true">→</span></h3>
+          <div class="img" data-label="image 4"><img src="image4.jpg" alt="Événements" loading="lazy" onerror="this.remove()"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container foot">
+    <div>
+      <a class="logo" href="#top">logo</a>
+    </div>
+    <div>
+      <h3>Nos univers</h3>
+      <ul>
+        <li><a href="categorie.html?cat=entreprise">Cadeaux entreprise</a></li>
+        <li><a href="categorie.html?cat=maison">Cadeaux maison</a></li>
+        <li><a href="categorie.html?cat=personnalise">Cadeaux personnalisés</a></li>
+        <li><a href="categorie.html?cat=evenement">Événements</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="mailto:contact@exemple.com">[Adresse e-mail]</a></li>
+        <li><a href="tel:+00000000">[Téléphone]</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> [Nom de la marque]. Tous droits réservés.</div>
+</footer>
+
+<script>
+  // Ombre du header au défilement
+  const header = document.querySelector('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Menu mobile
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('menu');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  };
+  btn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+  // Vidéo : charge le lecteur au clic
+  const box = document.getElementById('video');
+  const poster = box.dataset.poster;
+  if (poster) box.querySelector('.video-play').style.backgroundImage = `url("${poster}")`;
+  box.querySelector('.video-play').addEventListener('click', () => {
+    const src = box.dataset.video;
+    if (!src) return;
+    let el;
+    if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(src)) {
+      el = document.createElement('video');
+      el.src = src; el.controls = true; el.autoplay = true; el.playsInline = true;
+    } else {
+      el = document.createElement('iframe');
+      el.src = src + (src.includes('?') ? '&' : '?') + 'autoplay=1';
+      el.allow = 'autoplay; fullscreen; picture-in-picture';
+      el.allowFullscreen = true; el.title = 'Vidéo de présentation';
+    }
+    box.innerHTML = ''; box.appendChild(el);
+  });
+
+  // Apparition au défilement
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12 });
+    items.forEach((el, i) => { el.style.transitionDelay = (i % 4) * 80 + 'ms'; io.observe(el); });
+  } else { items.forEach((el) => el.classList.add('in')); }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

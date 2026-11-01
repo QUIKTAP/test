@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catégorie – [Nom de la marque]</title>
+<meta name="description" content="Tous les produits de la catégorie.">
+<meta name="theme-color" content="#14213D">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header id="top">
+  <div class="container bar">
+    <a class="logo" href="index.html" aria-label="Accueil">logo</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span></button>
+    <nav id="menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="categorie.html?cat=entreprise">Cadeaux entreprise</a></li>
+        <li><a href="categorie.html?cat=maison">Cadeaux maison</a></li>
+        <li><a href="categorie.html?cat=personnalise">Cadeaux personnalisés</a></li>
+        <li><a href="categorie.html?cat=evenement">Événements</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="index.html">Accueil</a> › <span id="crumb"></span></div>
+      <h1 id="titre"></h1>
+      <p id="intro"></p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="tabs" id="tabs" aria-label="Catégories"></div>
+  </div>
+
+  <section class="products">
+    <div class="container">
+      <p class="count" id="count"></p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="container foot">
+    <div><a class="logo" href="index.html">logo</a></div>
+    <div>
+      <h3>Nos univers</h3>
+      <ul>
+        <li><a href="categorie.html?cat=entreprise">Cadeaux entreprise</a></li>
+        <li><a href="categorie.html?cat=maison">Cadeaux maison</a></li>
+        <li><a href="categorie.html?cat=personnalise">Cadeaux personnalisés</a></li>
+        <li><a href="categorie.html?cat=evenement">Événements</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="mailto:contact@exemple.com">[Adresse e-mail]</a></li>
+        <li><a href="tel:+00000000">[Téléphone]</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="copy">© <span id="year"></span> [Nom de la marque]. Tous droits réservés.</div>
+</footer>
+
+<script src="produits.js"></script>
+<script>
+  // Catégorie demandée dans l'adresse (?cat=maison), sinon la première
+  const params = new URLSearchParams(location.search);
+  const cle = Object.prototype.hasOwnProperty.call(CATEGORIES, params.get('cat')) ? params.get('cat') : Object.keys(CATEGORIES)[0];
+  const cat = CATEGORIES[cle];
+
+  document.title = cat.titre + ' – [Nom de la marque]';
+  document.getElementById('crumb').textContent = cat.titre;
+  document.getElementById('titre').textContent = cat.titre;
+  document.getElementById('intro').textContent = cat.intro;
+
+  // Onglets pour passer d'une catégorie à l'autre
+  const tabs = document.getElementById('tabs');
+  Object.entries(CATEGORIES).forEach(([k, c]) => {
+    const a = document.createElement('a');
+    a.href = 'categorie.html?cat=' + k;
+    a.textContent = c.titre;
+    if (k === cle) a.setAttribute('aria-current', 'page');
+    tabs.appendChild(a);
+  });
+
+  // Produits de la catégorie
+  const grid = document.getElementById('grid');
+  const n = cat.produits.length;
+  document.getElementById('count').textContent = n + (n > 1 ? ' produits' : ' produit');
+  if (!n) {
+    grid.outerHTML = '<p class="empty">Aucun produit pour le moment.</p>';
+  }
+  cat.produits.forEach((p, i) => {
+    const art = document.createElement('article');
+    art.className = 'product reveal';
+
+    const img = document.createElement('div');
+    img.className = 'img';
+    img.dataset.label = 'image produit';
+    if (p.image) {
+      const im = document.createElement('img');
+      im.src = p.image; im.alt = p.nom; im.loading = 'lazy';
+      im.onerror = () => im.remove();
+      img.appendChild(im);
+    }
+    art.appendChild(img);
+
+    const h = document.createElement('h2'); h.textContent = p.nom; art.appendChild(h);
+    if (p.description) { const d = document.createElement('p'); d.className = 'desc'; d.textContent = p.description; art.appendChild(d); }
+    if (p.prix) { const pr = document.createElement('p'); pr.className = 'price'; pr.textContent = p.prix; art.appendChild(pr); }
+
+    const btn = document.createElement('a');
+    btn.className = 'btn';
+    btn.href = 'mailto:' + EMAIL_CONTACT + '?subject=' + encodeURIComponent('Demande : ' + p.nom);
+    btn.textContent = 'Demander ce produit';
+    art.appendChild(btn);
+
+    grid.appendChild(art);
+  });
+
+  // Header, menu mobile, apparition au défilement
+  const header = document.querySelector('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+
+  const btn = document.querySelector('.menu-btn');
+  const menu = document.getElementById('menu');
+  const setMenu = (open) => {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+    btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  };
+  btn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+
+  const items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.1 });
+    items.forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + 'ms'; io.observe(el); });
+  } else { items.forEach((el) => el.classList.add('in')); }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
